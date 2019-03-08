@@ -1,7 +1,5 @@
 # umi-antd-mobile
 
-#### 如果本项目对你有帮助，请不要吝啬你的star
-
 以 [UMI](https://umijs.org/zh/) + [DVA](https://dvajs.com/) 为底层框架，包含完整的前端工程化实践
 
 参考了 [ant-pro](https://pro.ant.design/index-cn)
@@ -169,32 +167,6 @@ body {
   padding-bottom: calc(50px + env(safe-area-inset-bottom));
 }
 ```
-## 支持环境
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br> iOS Safari | [<img src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=356c6916013387449cc5287a6934bec4/d53f8794a4c27d1e11530c8216d5ad6eddc4387a.jpg" alt="Android" width="24px" height="24px" />](https://developer.android.com/)</br> Android 
-| --------- | --------- |
-| iOS 7+ | Android 4.4+ |
 
 
-## FAQ
 
-### 1、运行git commit后发现 less文件 length-zero-no-unit报错。
-
-由于开启了stylelint以及git precommit验证，触发验证规则则无法提交。可参考 [length-zero-no-unit](https://stylelint.io/user-guide/rules/length-zero-no-unit/) 解决验证问题。
-
-## TODO
-
-- [x] tabBar嵌套路由
-- [x] 集成nprogress进度条
-- [x] 部署示例
-- [x] 封装滚动容器
-- [x] 支持TypeScript
-- [x] 支持pwa
-- [ ] 封装antd-mobile没有的常用组件
-- [ ] mock数据示例
-- [ ] 具体业务覆盖单元测试例子
-
-## 与我联系
-
-<img width="300px" src="qrcode/Group.png" />
-<img width="300px" src="qrcode/personal.png" />
