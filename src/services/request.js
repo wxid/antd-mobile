@@ -1,6 +1,6 @@
 /*
- * @Author: Jan-superman 
- * @Date: 2018-10-14 16:02:56 
+ * @Author: Jan-superman
+ * @Date: 2018-10-14 16:02:56
  * @Last Modified by: superman
  * @Last Modified time: 2018-12-25 00:56:08
  */
@@ -40,25 +40,6 @@ const checkStatus = response => {
   throw error;
 };
 
-const cachedSave = (response, hashcode) => {
-  /**
-   * Clone a response data and store it in sessionStorage
-   * Does not support data other than json, Cache only json
-   */
-  const contentType = response.headers.get('Content-Type');
-  if (contentType && contentType.match(/application\/json/i)) {
-    // All data is saved as text
-    response
-      .clone()
-      .text()
-      .then(content => {
-        sessionStorage.setItem(hashcode, content);
-        sessionStorage.setItem(`${hashcode}:timestamp`, Date.now());
-      });
-  }
-  return response;
-};
-
 /**
  * Requests a URL, returning a promise.
  *
@@ -83,8 +64,24 @@ export default function request(url, option) {
 
   const defaultOptions = {
     // credentials: 'include',
+    mode: 'cors',
   };
-  const newOptions = { ...defaultOptions, ...options };
+
+
+  let tokenConfig = {};
+  if (
+    url.indexOf('/api/login') <= 0 &&
+    (localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null)
+  ) {
+    tokenConfig = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    };
+  }
+
+
+  const newOptions = { ...defaultOptions, ...tokenConfig, ...options };
   if (
     newOptions.method === 'POST' ||
     newOptions.method === 'PUT' ||
@@ -106,24 +103,27 @@ export default function request(url, option) {
     }
   }
 
-  const expirys = options.expirys && 10;
-  // options.expirys !== false, return the cache,
-  if (options.expirys !== false) {
-    const cached = sessionStorage.getItem(hashcode);
-    const whenCached = sessionStorage.getItem(`${hashcode}:timestamp`);
-    if (cached !== null && whenCached !== null) {
-      const age = (Date.now() - whenCached) / 1000;
-      if (age < expirys) {
-        const response = new Response(new Blob([cached]));
-        return response.json();
-      }
-      sessionStorage.removeItem(hashcode);
-      sessionStorage.removeItem(`${hashcode}:timestamp`);
-    }
+  if (url.indexOf('http://') !== 0 && url.indexOf('https://') !== 0) {
+    url = 'http://192.168.1.10:8031/api' + url;
   }
+  console.log(newOptions);
+  // const expirys = options.expirys && 10;
+  // // options.expirys !== false, return the cache,
+  // if (options.expirys !== false) {
+  //   const cached = sessionStorage.getItem(hashcode);
+  //   const whenCached = sessionStorage.getItem(`${hashcode}:timestamp`);
+  //   if (cached !== null && whenCached !== null) {
+  //     const age = (Date.now() - whenCached) / 1000;
+  //     if (age < expirys) {
+  //       const response = new Response(new Blob([cached]));
+  //       return response.json();
+  //     }
+  //     sessionStorage.removeItem(hashcode);
+  //     sessionStorage.removeItem(`${hashcode}:timestamp`);
+  //   }
+  // }
   return fetch(url, newOptions)
     .then(checkStatus)
-    .then(response => cachedSave(response, hashcode))
     .then(response => {
       // DELETE and 204 do not return data by default
       // using .json will report an error.

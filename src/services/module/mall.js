@@ -1,11 +1,11 @@
 /*
- * @Author: Jan-superman 
- * @Date: 2018-10-14 16:02:35 
+ * @Author: Jan-superman
+ * @Date: 2018-10-14 16:02:35
  * @Last Modified by: superman
  * @Last Modified time: 2018-12-25 00:56:22
  */
 
-import { stringify, request, apiUrlfun } from '../config';
+import { stringify, request, apiUrlfun, currentHost } from '../config';
 
 // 获取商品列表
 export async function rtsGetCommodityList(params) {
@@ -20,4 +20,8 @@ export async function rtsGetCategorysList(params) {
 // 获取二级类目
 export async function rtsGetSubcategories(params) {
   return request(`${apiUrlfun('mall')}/v1/subcategories?${stringify(params)}`);
+}
+
+export async function order(params) {
+  return request(`${currentHost()}/api/research/project/hospital`);
 }

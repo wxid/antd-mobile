@@ -54,7 +54,7 @@ export default {
     chrome: 58,
     ie: 9,
   },
-  outputPath: './deploy/dist',
+  outputPath: './dist',
   hash: true,
   alias: {
     '@': path.resolve(__dirname, 'src'),

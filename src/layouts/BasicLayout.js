@@ -1,6 +1,6 @@
 /*
- * @Author: Jan-superman 
- * @Date: 2018-09-27 20:38:14 
+ * @Author: Jan-superman
+ * @Date: 2018-09-27 20:38:14
  * @Last Modified by: superman
  * @Last Modified time: 2019-02-01 16:58:15
  */
@@ -11,6 +11,7 @@ import NProgress from 'nprogress';
 import withRouter from 'umi/withRouter';
 import { connect } from 'dva';
 import '@/layouts/nprogress.less';
+import request from '../config/client';
 
 NProgress.configure({ showSpinner: false });
 
@@ -19,6 +20,42 @@ const BarRoutes = ['/shop', '/', '/me', '/category'];
 let currHref = '';
 
 class BasicLayout extends PureComponent {
+  constructor(props) {
+    super(props);
+    function ddConfig() {
+      return request('https://wx.haplox.cn/api/dingding/getconfig/sales').then(
+        (res) => {
+          console.log(res);
+          let _config = res.entity
+          dd.config({
+            agentId: _config.agentId,
+            corpId: _config.corpId,
+            timeStamp: _config.timeStamp,
+            nonceStr: _config.nonceStr,
+            signature: _config.signature,
+            jsApiList: ['runtime.info', 'biz.util.scan', 'biz.util.uploadImage', 'biz.util.previewImage']
+          })
+        },
+        () => {
+          alert('ddconfig 请求失败')
+        }
+      )
+    }
+    ddConfig();
+  }
+
+  componentDidMount() {
+    const {history} = this.props;
+    // console.log(history.listen);
+
+    history.listen((location, action) => {
+
+
+    });
+
+
+  }
+
   render() {
     const { children, location, loading } = this.props;
     const { href } = window.location; // 浏览器地址栏中地址

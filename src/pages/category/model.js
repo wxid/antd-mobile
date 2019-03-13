@@ -1,4 +1,4 @@
-import { rtsGetCategorysList, rtsGetSubcategories } from '@/services';
+import { rtsGetCategorysList, rtsGetSubcategories, order } from '@/services';
 import { Toast } from 'antd-mobile';
 
 export default {
@@ -45,6 +45,10 @@ export default {
           },
         });
       }
+    },
+    *orderList({payload}, {call, put}) {
+      const response = yield call(order, payload);
+      console.log(response);
     },
   },
   reducers: {
