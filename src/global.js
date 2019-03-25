@@ -18,6 +18,7 @@ function localLogin() {
 function getAuthCode() {
   dd.ready(function () {
     let _corpId = 'dingf77248eb1d8e040b35c2f4657eb6378f'  // 企业在钉钉内的唯一标识
+    console.log(dd.device.notification.showPreloader);
     dd.device.notification.showPreloader({  // 显示正在登录 loading 动画
       text: "登录中..",  // loading 显示的字符，空表示不显示文字
       showIcon: true,  // 是否显示icon，默认true
