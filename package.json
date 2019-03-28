@@ -20,6 +20,7 @@
   "dependencies": {
     "antd-mobile": "^2.2.5",
     "better-scroll": "^1.13.2",
+    "classname": "^0.0.0",
     "dva": "^2.4.0",
     "enzyme": "^3.4.4",
     "glob": "^7.1.3",
