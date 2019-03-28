@@ -10,6 +10,7 @@ export default [{
     { path: '/drawer', component: './Learn/index', title: '抽屉' },
     { path: '/createContext', component: './Learn/createContext', title: 'createContext' },
     { path: '/carousel', component: './Learn/carousel', title: '走马灯' },
+    { path: 'learning', component: './Learn/learning' },
     {
       path: '/exception',
       component: '../layouts/ExceptionLayout',

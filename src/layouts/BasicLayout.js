@@ -22,10 +22,11 @@ let currHref = '';
 class BasicLayout extends PureComponent {
   constructor(props) {
     super(props);
+
     function ddConfig() {
       return request('https://wx.haplox.cn/api/dingding/getconfig/sales').then(
         (res) => {
-          console.log(res);
+          // console.log(res);
           let _config = res.entity
           dd.config({
             agentId: _config.agentId,
@@ -45,7 +46,7 @@ class BasicLayout extends PureComponent {
   }
 
   componentDidMount() {
-    const {history} = this.props;
+    const { history } = this.props;
     // console.log(history.listen);
 
     history.listen((location, action) => {
