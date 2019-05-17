@@ -47,13 +47,15 @@ class BasicLayout extends PureComponent {
 
   componentDidMount() {
     const { history } = this.props;
-    // console.log(history.listen);
+    console.log(history.listen);
 
     history.listen((location, action) => {
 
 
     });
+  }
 
+  componentUpdate() {
 
   }
 

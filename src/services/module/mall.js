@@ -25,3 +25,11 @@ export async function rtsGetSubcategories(params) {
 export async function order(params) {
   return request(`${currentHost()}/api/research/project/hospital`);
 }
+
+export async function users(params) {
+  return request(`${currentHost()}/api/research/project/hospital`);
+}
+
+export async function logins(params) {
+  return request(`${currentHost()}/api/research/project/hospital`);
+}

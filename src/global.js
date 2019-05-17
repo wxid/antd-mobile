@@ -2,7 +2,14 @@
 import '@babel/polyfill';
 import request from './config/client';
 
-// console.log(process);
+const enterTab = () => {
+  console.log('进入路由做一些事情，嘿嘿嘿')
+}
+const leaveTab = () => {
+  console.log('要离开路由了')
+}
+
+// console.log(12312123123123);
 
 function localLogin() {
   request({ path: '/loginwx', entity: { code: 'woshijc' } }).then(
