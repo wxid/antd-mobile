@@ -47,36 +47,8 @@ export default {
     setup({ history, dispatch }) {
       console.log(123123123123)
       // Subscribe history(url) change, trigger `load` action if pathname is `/`
-      return history.listen((path) => {
-        // console.log(path)
-        if (!isWechat()) {
-          if (path.path !== '/shop/openwx') {
-            router.push('/shop/openwx');
-          }
-        }
-        const token = localStorage.getItem('jwt-token')
-
-        if (token !== null && token !== 'undefined') {
-          dispatch({
-            type: 'getUser'
-          });
-        } else {
-          const backcode = getQueryString('code');
-          if (backcode !== null && backcode !== 'undefined') {
-            dispatch({
-              type: 'login',
-              payload: {
-                code: backcode,
-              }
-            });
-          } else {
-            loginWechat();
-          }
-        }
-        // if (typeof window.ga !== 'undefined') {
-        //   window.ga('send', 'pageview', path.pathname + path.search);
-        // }
-
+      return history.listen((path, web) => {
+        console.log(path, web);
       });
     },
   },
