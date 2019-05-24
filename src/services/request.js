@@ -71,11 +71,11 @@ export default function request(url, option) {
   let tokenConfig = {};
   if (
     url.indexOf('/api/login') <= 0 &&
-    (localStorage.getItem('token') !== undefined && localStorage.getItem('token') !== null)
+    (localStorage.getItem('jwt-token') !== undefined && localStorage.getItem('jwt-token') !== null)
   ) {
     tokenConfig = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem('jwt-token')}`,
       },
     };
   }
@@ -144,16 +144,16 @@ export default function request(url, option) {
       //   }
       // environment should not be used
       // if (status === 403) {
-  //   router.push('/exception/403');
-  //   return;
-  // }
-  // if (status <= 504 && status >= 500) {
-  //   router.push('/exception/500');
-  //   return;
-  // }
-  // if (status >= 404 && status < 422) {
-  //   router.push('/404');
-  // }
+      //   router.push('/exception/403');
+      //   return;
+      // }
+      // if (status <= 504 && status >= 500) {
+      //   router.push('/exception/500');
+      //   return;
+      // }
+      // if (status >= 404 && status < 422) {
+      //   router.push('/404');
+      // }
 
-});
+    });
 }

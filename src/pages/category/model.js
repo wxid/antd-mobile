@@ -1,4 +1,5 @@
-import { rtsGetCategorysList, rtsGetSubcategories, order } from '@/services';
+import { rtsGetCategorysList, rtsGetSubcategories, order } from '@/services/module/mall';
+import { users } from '@/services/module/user'
 import { Toast } from 'antd-mobile';
 
 export default {
@@ -9,7 +10,7 @@ export default {
     activeTab: null,
   },
   effects: {
-    *GetCategorysList({ payload }, { call, put }) {
+    * GetCategorysList({ payload }, { call, put }) {
       const response = yield call(rtsGetCategorysList, payload);
       const { code, message, data } = response;
       if (code !== 0) {
@@ -31,7 +32,7 @@ export default {
         });
       }
     },
-    *GetSubcategories({ payload }, { call, put }) {
+    * GetSubcategories({ payload }, { call, put }) {
       const response = yield call(rtsGetSubcategories, payload);
       const { code, message, data } = response;
       if (code !== 0) {
@@ -46,7 +47,9 @@ export default {
         });
       }
     },
-    *orderList({payload}, {call, put}) {
+    * orderList({ payload }, { call, put }) {
+      console.log(order)
+      console.log(users)
       const response = yield call(order, payload);
       console.log(response);
     },

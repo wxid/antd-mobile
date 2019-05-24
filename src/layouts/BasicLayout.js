@@ -11,8 +11,6 @@ import NProgress from 'nprogress';
 import withRouter from 'umi/withRouter';
 import { connect } from 'dva';
 import '@/layouts/nprogress.less';
-import request from '../config/client';
-
 NProgress.configure({ showSpinner: false });
 
 // 底部有bar菜单
@@ -22,38 +20,9 @@ let currHref = '';
 class BasicLayout extends PureComponent {
   constructor(props) {
     super(props);
-
-    function ddConfig() {
-      return request('https://wx.haplox.cn/api/dingding/getconfig/sales').then(
-        (res) => {
-          // console.log(res);
-          let _config = res.entity
-          dd.config({
-            agentId: _config.agentId,
-            corpId: _config.corpId,
-            timeStamp: _config.timeStamp,
-            nonceStr: _config.nonceStr,
-            signature: _config.signature,
-            jsApiList: ['runtime.info', 'biz.util.scan', 'biz.util.uploadImage', 'biz.util.previewImage']
-          })
-        },
-        () => {
-          alert('ddconfig 请求失败')
-        }
-      )
-    }
-    ddConfig();
   }
 
-  componentDidMount() {
-    const { history } = this.props;
-    console.log(history.listen);
-
-    history.listen((location, action) => {
-
-
-    });
-  }
+  componentDidMount() {}
 
   componentUpdate() {
 

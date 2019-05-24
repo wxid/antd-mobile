@@ -22,7 +22,7 @@ const currentHost = () => {
     return lineHost;
   }
 };
-console.log(currentHost())
+// console.log(currentHost())
 // console.log('环境变量', currentHost());
 // 自定义前缀，对应后端微服务
 const apiUrlfun = val => {

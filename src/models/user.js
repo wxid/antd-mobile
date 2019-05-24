@@ -11,4 +11,13 @@ export default {
   },
 
   reducers: {},
+
+  subscriptions: {
+    setup({ history, dispatch }) {
+      return history.listen((path, web) => {
+        console.log(path, web);
+        console.log(54321)
+      });
+    },
+  },
 }
