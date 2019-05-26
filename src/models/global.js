@@ -16,7 +16,7 @@ export default {
       console.log(4321)
     },
     * getMe({}, { call, put, select }) {
-
+        console.log('123456')
     },
     * clearNotices({ payload }, { put, select }) {
 
@@ -58,8 +58,15 @@ export default {
           });
         } else if (process.env.NODE_ENV === 'development') {
           // 本地登录
+          dispatch({
+            type: 'getMe',
+          });
         } else {
           // 获取免登授权码
+
+          dispatch({
+            type: 'clearNotices'
+          });
         }
       });
     },
