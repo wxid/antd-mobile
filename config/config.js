@@ -57,6 +57,6 @@ export default {
   outputPath: './dist',
   hash: true,
   alias: {
-    '@': path.resolve(__dirname, 'src'),
+    '@': path.resolve(__dirname, './src'),
   },
 };

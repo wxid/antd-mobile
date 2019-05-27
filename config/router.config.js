@@ -4,6 +4,7 @@ export default [{
   routes: [
     { path: '/', component: './index/index', title: '首页' },
     { path: '/category', component: './category/index', title: '分类' },
+    {path: '/shop', component: './shop/index', title: '购物'},
     { path: '/test', component: './test/index', title: '测试页面111111' },
     { path: '/image', component: './test/image', title: '图片' },
     { path: '/tabTar', component: './test/ListView' },

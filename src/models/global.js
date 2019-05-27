@@ -50,7 +50,7 @@ export default {
       })
     },
     * getMe({}, { call, put, select }) {
-
+      console.log('123456')
     },
     * getAuthCode({}, { call, put, select }) {
 
@@ -102,6 +102,12 @@ export default {
           // 获取免登授权码
           dispatch({
             type: 'getAuthCode'
+          });
+        } else {
+          // 获取免登授权码
+
+          dispatch({
+            type: 'clearNotices'
           });
         }
       });

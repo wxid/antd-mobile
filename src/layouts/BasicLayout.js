@@ -40,7 +40,7 @@ class BasicLayout extends PureComponent {
         currHref = href; // 将新页面的 href 值赋值给 currHref
       }
     }
-
+    console.log(BarRoutes)
     if (BarRoutes.indexOf(location.pathname) < 0) {
       return <div>{children}</div>;
     }
