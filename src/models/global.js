@@ -3,6 +3,7 @@
 import { me, ddLogin } from '@/services/module/user';
 import { getAuthCode } from '@/config/dd';
 import router from 'umi/router';
+import fetch from 'dva/fetch'
 
 export default {
   namespace: 'global',
@@ -27,6 +28,7 @@ export default {
           corpId: _corpId,
           onSuccess: (info) => {
             console.log('authcode: ' + info.code) // 通过该免登授权码可以换取用户身份
+            fetch('')
             // yield put({
             //   type: 'clearNotices',
             //   payload: {
@@ -102,12 +104,6 @@ export default {
           // 获取免登授权码
           dispatch({
             type: 'getAuthCode'
-          });
-        } else {
-          // 获取免登授权码
-
-          dispatch({
-            type: 'clearNotices'
           });
         }
       });

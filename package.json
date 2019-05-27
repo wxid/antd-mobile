@@ -64,11 +64,9 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,less}": [
-      "node ./scripts/lint-prettier.js",
+      "eslint --fix",
       "git add"
-    ],
-    "**/*.{js,jsx}": "npm run lint-staged:js",
-    "**/*.less": "stylelint --syntax less"
+    ]
   },
   "engines": {
     "node": ">=8.0.0"
