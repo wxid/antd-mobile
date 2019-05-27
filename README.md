@@ -38,9 +38,9 @@
 
 // 安装项目
 
-git clone --depth=1 https://github.com/jinjinwa/umi-antd-mobile.git my-project
+git clone --depth=1 https://github.com/wxid/antd-mobile.git
 
-cd my-project
+cd antd-mobile
 
 // 检出依赖
 yarn
