@@ -2,6 +2,24 @@
 import '@babel/polyfill';
 import request from '@/services/request';
 
+request('https://wx.haplox.cn/api/dingding/getconfig/sales').then(
+  (res) => {
+    const _config = res
+    dd.config({
+      agentId: _config.agentId,
+      corpId: _config.corpId,
+      timeStamp: _config.timeStamp,
+      nonceStr: _config.nonceStr,
+      signature: _config.signature,
+      jsApiList: ['runtime.info', 'biz.util.scan', 'biz.util.uploadImage', 'biz.util.previewImage']
+    })
+    console.log(res)
+  },
+  () => {
+    alert('ddconfig 请求失败')
+  }
+)
+
 function authCodeLogin(authCode) {
   request(`/dingding/auth/sales?code=${  authCode}`).then(
     () => {
@@ -39,7 +57,7 @@ function getAuthCode() {
     dd.runtime.permission.requestAuthCode({
       corpId: _corpId,
       onSuccess(info) {
-        console.log(`authcode: ${  info.code}`) // 通过该免登授权码可以换取用户身份
+        // console.log(`authcode: ${  info.code}`) // 通过该免登授权码可以换取用户身份
         authCodeLogin(info.code) // 使用 authCode 请求登录
       },
       onFail(err) {
