@@ -22,7 +22,19 @@ class BasicLayout extends PureComponent {
     super(props);
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    // if (process.env.NODE_ENV === 'product') {
+    //   const { dispatch } = this.props;
+    //   dispatch({
+    //     type: 'global/getConfig',
+    //   });
+    // }
+
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'global/getConfig',
+    });
+  }
 
   componentUpdate() {
 
@@ -40,7 +52,7 @@ class BasicLayout extends PureComponent {
         currHref = href; // 将新页面的 href 值赋值给 currHref
       }
     }
-    console.log(BarRoutes)
+    // console.log(BarRoutes)
     if (BarRoutes.indexOf(location.pathname) < 0) {
       return <div>{children}</div>;
     }

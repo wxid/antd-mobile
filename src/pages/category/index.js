@@ -28,10 +28,10 @@ class Category extends PureComponent {
     // dispatch({
     //   type: 'category/GetCategorysList',
     // });
-    // dispatch({
-    //   type: 'category/orderList',
-    //   payload: {},
-    // });
+    dispatch({
+      type: 'category/orderList',
+      payload: {},
+    });
   }
 
   getRef = e => {

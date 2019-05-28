@@ -22,8 +22,8 @@ export async function rtsGetSubcategories(params) {
   return request(`${apiUrlfun('mall')}/v1/subcategories?${stringify(params)}`);
 }
 
-export async function order(params) {
-  return request(`${currentHost()}/api/research/project/hospital`);
+export async function order() {
+  return request(`/orders/list`);
 }
 
 export async function users(params) {

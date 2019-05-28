@@ -9,6 +9,7 @@ import fetch from 'dva/fetch';
 import { Toast } from 'antd-mobile';
 import router from 'umi/router';
 import hash from 'hash.js';
+import { defaultHost, lineHost } from './config';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -69,10 +70,7 @@ export default function request(url, option) {
 
 
   let tokenConfig = {};
-  if (
-    url.indexOf('/api/login') <= 0 &&
-    (localStorage.getItem('jwt-token') !== undefined && localStorage.getItem('jwt-token') !== null)
-  ) {
+  if (localStorage.getItem('jwt-token') !== undefined && localStorage.getItem('jwt-token') !== null) {
     tokenConfig = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('jwt-token')}`,
@@ -102,58 +100,29 @@ export default function request(url, option) {
       };
     }
   }
-
-  if (url.indexOf('http://') !== 0 && url.indexOf('https://') !== 0) {
-    url = 'http://192.168.1.10:8031/api' + url;
+  let apiUrl = '';
+  if (process.env.NODE_ENV === 'development') {
+    apiUrl = defaultHost;
+  } else {
+    apiUrl = lineHost;
   }
-  console.log(newOptions);
-  // const expirys = options.expirys && 10;
-  // // options.expirys !== false, return the cache,
-  // if (options.expirys !== false) {
-  //   const cached = sessionStorage.getItem(hashcode);
-  //   const whenCached = sessionStorage.getItem(`${hashcode}:timestamp`);
-  //   if (cached !== null && whenCached !== null) {
-  //     const age = (Date.now() - whenCached) / 1000;
-  //     if (age < expirys) {
-  //       const response = new Response(new Blob([cached]));
-  //       return response.json();
-  //     }
-  //     sessionStorage.removeItem(hashcode);
-  //     sessionStorage.removeItem(`${hashcode}:timestamp`);
-  //   }
-  // }
+  if (url.indexOf('http://') !== 0 && url.indexOf('https://') !== 0) {
+    url = apiUrl + '/api' + url;
+  }
   return fetch(url, newOptions)
-    .then(checkStatus)
+    // .then(checkStatus)
     .then(response => {
       // DELETE and 204 do not return data by default
       // using .json will report an error.
+      if (response.status >= 400) {
+        localStorage.removeItem('jwt-token');
+        // window.location.reload();
+      }
+
       if (newOptions.method === 'DELETE' || response.status === 204) {
         return response.text();
       }
+      // console.log(response.json())
       return response.json();
     })
-    .catch(e => {
-      const status = e.name;
-      //   if (status === 401) {
-      //     // @HACK
-      //     /* eslint-disable no-underscore-dangle */
-      //     window.g_app._store.dispatch({
-      //       type: 'login/logout',
-      //     });
-      //     return;
-      //   }
-      // environment should not be used
-      // if (status === 403) {
-      //   router.push('/exception/403');
-      //   return;
-      // }
-      // if (status <= 504 && status >= 500) {
-      //   router.push('/exception/500');
-      //   return;
-      // }
-      // if (status >= 404 && status < 422) {
-      //   router.push('/404');
-      // }
-
-    });
 }

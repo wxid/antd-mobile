@@ -47,9 +47,7 @@ export default {
         });
       }
     },
-    * orderList({ payload }, { call, put }) {
-      console.log(order)
-      console.log(users)
+    * orderList({ payload = {} }, { call, put }) {
       const response = yield call(order, payload);
       console.log(response);
     },

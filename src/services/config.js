@@ -12,8 +12,6 @@ const dev = process.env.NODE_ENV === 'development';
 const defaultHost = 'http://192.168.1.10:8031';
 const lineHost = 'https://wx.haplox.cn';
 
-console.log(dev);
-
 // 请求地址是当前访问地址
 const currentHost = () => {
   if (dev) {
@@ -32,4 +30,4 @@ const apiUrlfun = val => {
   return `${currentHost()}/api`;
 };
 
-export { stringify, apiUrlfun, request, currentHost };
+export { stringify, apiUrlfun, request, currentHost, defaultHost, lineHost };

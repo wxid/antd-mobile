@@ -31,7 +31,7 @@ class Exception extends React.PureComponent {
 
     const pageType = type in config ? type : '404';
     //const clsString = className('', className);
-
+    console.log(this.props)
     return (
       <div {...rest}>
         <div>
