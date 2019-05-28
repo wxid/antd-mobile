@@ -11,6 +11,7 @@ import NProgress from 'nprogress';
 import withRouter from 'umi/withRouter';
 import { connect } from 'dva';
 import '@/layouts/nprogress.less';
+
 NProgress.configure({ showSpinner: false });
 
 // 底部有bar菜单

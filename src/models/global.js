@@ -1,9 +1,8 @@
 // import { queryNotices } from '@/services/api';
 // import { isWechat, getClearPath, getClearHref, getClearSearch, loginWechat, getQueryString } from '@/config/login';
 import { ddConfig } from '@/services/module/user';
-import { getAuthCode } from '@/config/dd';
 import router from 'umi/router';
-import fetch from 'dva/fetch'
+import fetch from 'dva/fetch';
 
 export default {
   namespace: 'global',

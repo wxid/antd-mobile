@@ -16,9 +16,9 @@ const lineHost = 'https://wx.haplox.cn';
 const currentHost = () => {
   if (dev) {
     return defaultHost;
-  } else {
+  } 
     return lineHost;
-  }
+  
 };
 // console.log(currentHost())
 // console.log('环境变量', currentHost());

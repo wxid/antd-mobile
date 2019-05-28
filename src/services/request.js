@@ -107,7 +107,7 @@ export default function request(url, option) {
     apiUrl = lineHost;
   }
   if (url.indexOf('http://') !== 0 && url.indexOf('https://') !== 0) {
-    url = apiUrl + '/api' + url;
+    url = `${apiUrl  }/api${  url}`;
   }
   return fetch(url, newOptions)
     // .then(checkStatus)
