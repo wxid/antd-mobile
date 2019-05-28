@@ -13,21 +13,6 @@ export default {
   },
 
   effects: {
-    * getUser({ payload }, { call, put, select }) {
-
-    },
-    * getMe({}, { call, put, select }) {
-      console.log('123456')
-    },
-    * getAuthCode({}, { call, put, select }) {
-
-    },
-    * clearNotices({ payload }, { put, select }) {
-      console.log(111111)
-    },
-    * changeNoticeReadState({ payload }, { put, select }) {
-
-    },
     * getConfig(_, { call, put }) {
       const response = yield call(ddConfig);
       const _config = response;
